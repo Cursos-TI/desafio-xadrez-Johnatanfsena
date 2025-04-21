@@ -5,6 +5,9 @@ int main() {
     int casas =0;
     int opcao;
 
+    while (1)
+    {
+        
     printf("#### JOGO DE XADREX ####\n\n");
     printf("Escolha uma peça para mover: \n");
     printf("1. Bispo\n");
@@ -50,7 +53,7 @@ int main() {
                printf("Cavalo ande para baixo\n");
                casas++;
             }
-            printf("Uma casa para a esquerda\n");
+            printf("Cavalo agora ande uma casa para a esquerda\n");
             printf("\n");
             
         }
@@ -60,6 +63,6 @@ int main() {
      }else{
         printf("Opção invalida, tente novamente.\n");
      }
-        
+    }
     return 0;
 }
