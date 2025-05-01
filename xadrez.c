@@ -1,68 +1,85 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-int main() {
-    int bispo = 0, torre = 0, rainha = 0, cavalo = 0;
-    int casas =0;
+void movertorre(int casas){
+    if (casas == 0){
+        return;
+    }
+    printf("Torre ande para a esquerda\n");
+    movertorre(casas - 1);
+}
+
+void moverrainha(int casas1){
+    if(casas1 == 0){
+        return;
+    }
+    printf("Rainha ande para esquerda\n");
+    moverrainha(casas1 - 1);
+}
+
+void moverbispo(int passos){
+    if(passos == 0){
+        return;
+    }
+    printf("Bispo ande para cima\n");
+    for (int i = 0; i < 1; i++) {
+        printf("Bispo agora ande para a direita\n");
+    }
+    printf("\n");
+    moverbispo(passos - 1); // chamada recursiva
+}
+
+int main(){
+    int casas = 0;
     int opcao;
 
-    while (1)
-    {
-        
-    printf("#### JOGO DE XADREX ####\n\n");
-    printf("Escolha uma peça para mover: \n");
-    printf("1. Bispo\n");
-    printf("2.Torre\n");
-    printf("3.Rainha\n");
-    printf("4.Cavalo\n");
-    printf("5. Sair\n");
-    scanf("%d", &opcao);
+    while (1){
+        printf("#### JOGO DE XADREX ####\n\n");
+        printf("Escolha uma peça para mover: \n");
+        printf("1. Bispo\n");
+        printf("2. Torre\n");
+        printf("3. Rainha\n");
+        printf("4. Cavalo\n");
+        printf("5. Sair\n");
+        scanf("%d", &opcao);
 
-    
-     if (opcao == 1){
-    // Movimento do Bispo (5 vezes Cima + Direita)
-     for ( bispo; bispo < 5; bispo++){
-        printf("Bispo ande para cima\n");
-        printf("Bispo agora ande para a direita\n");
-        printf("\n");
-     }
-     
-    }else if(opcao == 2){
-    // Movimento da Torre (5 vezes para a  Direita)
-        while (torre < 5){
-            printf("Torre ande para a Direita\n");
-            torre++;
-            printf("\n");
-        }
-    }else if(opcao == 3){
-        // Movimento da Rainha (8 vezes para a Esquerda)
-        do {
-            printf("Rainha ande para a Esquerda\n");
-            rainha++;
+        if (opcao == 1){
+            int passos_bispo = 5;
+            printf("Movimento do bispo:\n");
+            moverbispo(passos_bispo);
             printf("\n");
 
-        } while(rainha < 8 );
-    
-    }else if(opcao == 4){
-    
-    // Movimento do Cavalo (Movimento em L: 2 para baixo e 1 para a esquerda)
-        for(cavalo = 1; cavalo <3; cavalo++){
-            casas = 0;
-        
-            while (casas < 2)
-            {
-               printf("Cavalo ande para baixo\n");
-               casas++;
+        } else if(opcao == 2){
+            int casastorre = 5;
+            printf("Movimento da torre:\n");
+            movertorre(casastorre);
+            printf("\n");
+
+        } else if(opcao == 3){
+            int casasrainha = 8;
+            printf("Movimento da Rainha:\n");
+            moverrainha(casasrainha);
+            printf("\n");
+
+        } else if(opcao == 4){
+            for(int cavalo = 1; cavalo < 3; cavalo++){
+                casas = 0;
+                while (casas < 2){
+                    printf("Cavalo ande para baixo\n");
+                    casas++;
+                }
+                printf("Cavalo agora ande uma casa para a esquerda\n");
+                printf("\n");
             }
-            printf("Cavalo agora ande uma casa para a esquerda\n");
-            printf("\n");
-            
+
+        } else if(opcao == 5){
+            printf("Saindo do jogo!\n");
+            break;
+
+        } else {
+            printf("Opção inválida, tente novamente.\n");
         }
-    }else if(opcao == 5){
-        printf("Saindo do jogo!\n");
-        break;
-     }else{
-        printf("Opção invalida, tente novamente.\n");
-     }
     }
+
     return 0;
 }
